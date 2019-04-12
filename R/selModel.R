@@ -37,7 +37,7 @@ sel_predict <- function(sad) {
   # model <- readRDS(file="model")
   # sad <- json
   # column_names <- read.csv("colnames.csv")
-
+print(sad)
   c_names = as.vector(t(column_names))
   siz = nrow(column_names)
   nrecords = nrow(sad)
