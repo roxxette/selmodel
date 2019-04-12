@@ -37,27 +37,34 @@ sel_predict <- function(sad) {
   # model <- readRDS(file="model")
   # sad <- json
   # column_names <- read.csv("colnames.csv")
-print(sad)
+library(jsonlite)
+print(toJSON(sad))
   c_names = as.vector(t(column_names))
-  siz = nrow(column_names)
+  siz = length(column_names)
   nrecords = nrow(sad)
-print('R0')
+  names(sad) <- toupper(names(sad))
+
+  df = setNames(data.frame(matrix(ncol = siz, nrow = nrecords, data=rep(0, siz * nrecords))), c_names)
+  # df <- sad[,c_names]
+
+print(toJSON(df))
   # library(XML)
   # library(RJSONIO)
   # library(jsonlite)
   # df <- fromJSON(sad)
-  df <- sad
-  names(df) <- toupper(names(df))
+
 print('R1')
-  df$B22_TOTAL_AMOUNT <- as.double(df$B22_TOTAL_AMOUNT)
-  df$B25_BORDER_TRANS <- as.integer(df$B25_BORDER_TRANS)
-  df$B6_TOTAL_PACKAGES <- as.integer(df$B6_TOTAL_PACKAGES)
+  df$SAD_ID <- sad$SAD_ID
+  df$B22_TOTAL_AMOUNT <- as.double(sad$B22_TOTAL_AMOUNT)
+  df$B25_BORDER_TRANS <- as.integer(sad$B25_BORDER_TRANS)
+  df$B6_TOTAL_PACKAGES <- as.integer(sad$B6_TOTAL_PACKAGES)
+
 print('R2')
 
-  result = predict(model, df)
+  result <- predict(model, df)
 print('R3')
 
-  resultdf = (data.frame(df$SAD_ID, result[2], result[2] > 0.7))
+  resultdf <- (data.frame(df$SAD_ID, result[2], result[2] > 0.7))
   colnames(resultdf) <- c("sad_id", "score", "alert")
   return(resultdf)
 }
