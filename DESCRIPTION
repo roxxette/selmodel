@@ -1,0 +1,15 @@
+Package: selmodel
+Type: Package
+Title: Selectivity Model
+Version: 0.1.0
+Author: Gabriele Contini
+Maintainer: Gabriele Contini <gabriele.contini.external@atos.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: Commercial/All rights reserved
+Encoding: UTF-8
+LazyData: true
+Imports:
+    xml2,
+    randomForest,
+    stats

@@ -1,0 +1,40 @@
+<SAD FF_STATUS='z'>
+	<sad_id>05DDKIE000000045</sad_id>
+	<b22_total_amount>1.0</b22_total_amount>
+	<b25_border_trans>1</b25_border_trans>
+	<b6_total_packages>1</b6_total_packages>
+	<CD_ASSESS FF_STATUS='z'>
+		<pay_method>P</pay_method>
+		<sad_id>05DDKIE000000045</sad_id>
+		<tax_amount>300.0</tax_amount>
+		<tax_type>B10</tax_type>
+		<version>1</version>
+	</CD_ASSESS>
+	<CD_TRANSPORT FF_STATUS='z'>
+		<bill_code>1</bill_code>
+		<iata_check>0</iata_check>
+		<prefix_air>001</prefix_air>
+		<prefix_other>FR</prefix_other>
+		<prefix_sea>AEABU1</prefix_sea>
+		<sad_id>05DDKIE000000045</sad_id>
+		<trans_type>1</trans_type>
+		<version>1</version>
+	</CD_TRANSPORT>
+	<ITEM FF_STATUS='z'>
+		<b33_commodity_code>X55150000</b33_commodity_code>
+		<IS_PACKAGE FF_STATUS='z'>
+			<description>1</description>
+			<gross_weight>1.0</gross_weight>
+			<item_num>1</item_num>
+			<marks>1</marks>
+			<mcc_ref>1</mcc_ref>
+			<ptype>10</ptype>
+			<quantity>1</quantity>
+			<remarks>1</remarks>
+			<removed_qty>1</removed_qty>
+			<removed_weight>1.0</removed_weight>
+			<sad_id>05DDKIE000000045</sad_id>
+			<version>1</version>
+		</IS_PACKAGE>
+	</ITEM>
+</SAD>

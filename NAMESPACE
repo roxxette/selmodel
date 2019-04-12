@@ -1,0 +1,4 @@
+import(randomForest)
+#import(rpart)
+importFrom("stats", "predict", "setNames")
+exportPattern("^[[:alpha:]]+")
