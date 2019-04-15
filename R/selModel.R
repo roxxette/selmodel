@@ -14,7 +14,10 @@ sel_predict <- function(sad, debug = FALSE) {
     print(toJSON(sad))
   }
 
-  c_names = as.vector(t(sel_columns))
+  model <- sel_model
+  sel_columns <- sel_model_column_names
+
+    c_names = as.vector(t(sel_columns))
   siz = length(sel_columns)
   nrecords = nrow(sad)
   names(sad) <- toupper(names(sad))
