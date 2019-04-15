@@ -8,61 +8,32 @@
 #' @return a dataframe containing sad_id, risk score, and  for all the passed in sad.
 #' @export
 #'
-sel_predict1 <- function(sad)  {
-  c_names = as.vector(t(column_names))
-  siz = nrow(column_names)
-  nrecords = nrow(sad)
-
-  df = setNames(data.frame(matrix(ncol = siz, nrow = nrecords, data=rep(0, siz * nrecords))), c_names)
-  for (row in 1:nrow(df)) {
-    b33_code = do.call("c", sad[row,c("_item")])$b33_commodity_code
-    for (colName in b33_code) {
-      if(colName %in% colnames(df)) {
-        df[row,colName] = 1;
-      } else {
-        df[row,"null"] = 1
-      }
-    }
+sel_predict <- function(sad, debug = FALSE) {
+  if (debug) {
+    library(jsonlite)
+    print(toJSON(sad))
   }
-  #this shouldn't be generally used in a library package but...
-  requireNamespace("randomForest")
-  result = predict(model,df)
 
-  resultdf = (data.frame(sad$sad_id,result, result > 0.5))
-  colnames(resultdf) <- c("sad_id", "score", "alert")
-  return(resultdf)
-}
-
-sel_predict <- function(sad) {
-  # model <- readRDS(file="model")
-  # sad <- json
-  # column_names <- read.csv("colnames.csv")
-library(jsonlite)
-print(toJSON(sad))
-  c_names = as.vector(t(column_names))
-  siz = length(column_names)
+  sel_model <- readRDS(file="models/sel_model")
+  sel_columns <- readRDS(file="models/sel_model_columns")
+  c_names = as.vector(t(sel_columns))
+  siz = length(sel_columns)
   nrecords = nrow(sad)
   names(sad) <- toupper(names(sad))
 
   df = setNames(data.frame(matrix(ncol = siz, nrow = nrecords, data=rep(0, siz * nrecords))), c_names)
   # df <- sad[,c_names]
 
-print(toJSON(df))
-  # library(XML)
-  # library(RJSONIO)
-  # library(jsonlite)
-  # df <- fromJSON(sad)
-
-print('R1')
   df$SAD_ID <- sad$SAD_ID
   df$B22_TOTAL_AMOUNT <- as.double(sad$B22_TOTAL_AMOUNT)
   df$B25_BORDER_TRANS <- as.integer(sad$B25_BORDER_TRANS)
   df$B6_TOTAL_PACKAGES <- as.integer(sad$B6_TOTAL_PACKAGES)
 
-print('R2')
+  if (debug) {
+    print(df)
+  }
 
   result <- predict(model, df)
-print('R3')
 
   resultdf <- (data.frame(df$SAD_ID, result[2], result[2] > 0.7))
   colnames(resultdf) <- c("sad_id", "score", "alert")
