@@ -14,8 +14,6 @@ sel_predict <- function(sad, debug = FALSE) {
     print(toJSON(sad))
   }
 
-  sel_model <- readRDS(file="models/sel_model")
-  sel_columns <- readRDS(file="models/sel_model_columns")
   c_names = as.vector(t(sel_columns))
   siz = length(sel_columns)
   nrecords = nrow(sad)

@@ -1,3 +1,5 @@
+
+
 train_test_selectivity_model <- function() {
   source('R/DBQuery.R')
   df1 <- query_oracle("SELECT SAD_ID, B22_TOTAL_AMOUNT, B25_BORDER_TRANS, B6_TOTAL_PACKAGES, COMPLIANT FROM TRADER_HISTORY")
