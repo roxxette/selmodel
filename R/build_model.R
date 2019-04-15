@@ -14,9 +14,8 @@ train_test_selectivity_model <- function() {
 
   df$COMPLIANT <- NULL
   column_names <- colnames(df)
-  saveRDS(column_names, "model/sel_model_columns")
+  saveRDS(column_names, "models/sel_model_columns")
 
-  save.image("R/sysdata.rda")
+  # save.image("R/sysdata.rda")
   print("model saved")
 }
-
