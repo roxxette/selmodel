@@ -1,4 +1,4 @@
-load_ml_libs <- funtion() {
+load_ml_libs <- function() {
   # Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071),
   library(e1071)
 
